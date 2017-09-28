@@ -66,4 +66,15 @@ String abuse = pd.abuse("you f**king a$$hole");
 System.out.println(abuse);
 
 {"sentence_type": "Abusive", "confidence_score": 0.953125}
+
+String sentiment_social = pd.sentiment_social("I left my camera at home");
+System.out.println(sentiment_social);
+
+{"probabilities": {"positive": 0.040374, "neutral": 0.491032, "negative": 0.468594}}
+
+String usage = pd.usage();
+System.out.println(usage);
+
+{"emotion": 100, "sentiment": 100, "similarity": 100,	"taxonomy": 100, "abuse": 100, "intent": 100,	"keywords": 100, "ner": 100, "multilang": 100, "sentiment_social": 100}
+
 ```
