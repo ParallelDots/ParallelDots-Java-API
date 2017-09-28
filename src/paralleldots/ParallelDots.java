@@ -284,7 +284,7 @@ public class ParallelDots{
                 MediaType mediatype = MediaType.parse("application/json");
                 RequestBody body = RequestBody.create(mediatype, "{\"status\":\"done\"}");
 		Request request = new Request.Builder()
-		  .url("https://apis.paralleldots.com/v2/multilang?text=La%20ville%20de%20Paris%20est%20tr%C3%A8s%20belle&lang_code=fr&api_key=wQYG4oIQrkBQsavDfzUIsIKEe4w4hIZaJy9BGlRjpMw")
+		  .url("https://apis.paralleldots.com/v2/multilang?text="+text+"&lang_code="+lang_code+"&api_key="+this.api_key)
 		  .post(body)
 		  .addHeader("cache-control", "no-cache")
 		  .addHeader("postman-token", "b1a5997a-4a4e-0235-f7e5-fcbea501792b")
@@ -293,7 +293,7 @@ public class ParallelDots{
 		Response response = client.newCall(request).execute();
                 return response.body().string();
 	}
-
+        
 	public String abuse(String text) throws Exception {
 		String url = "https://apis.paralleldots.com/v2/abuse";
 		URL obj = new URL(url);
@@ -328,4 +328,33 @@ public class ParallelDots{
 		in.close();
 		return response.toString();
 	}
+        public String sentiment_social(String text) throws Exception {
+                OkHttpClient client = new OkHttpClient();
+                MediaType mediatype = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediatype, "{\"status\":\"done\"}");
+		Request request = new Request.Builder()
+		  .url("http://apis.paralleldots.com/v2/sentiment_social?text="+text+"&api_key="+this.api_key)
+		  .post(body)
+		  .addHeader("cache-control", "no-cache")
+		  .addHeader("postman-token", "b1a5997a-4a4e-0235-f7e5-fcbea501792b")
+		  .build();
+
+		Response response = client.newCall(request).execute();
+                return response.body().string();
+        }
+        
+        public String usage() throws Exception {
+                OkHttpClient client = new OkHttpClient();
+                MediaType mediatype = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediatype, "{\"status\":\"done\"}");
+		Request request = new Request.Builder()
+		  .url("http://apis.paralleldots.com/usage?api_key=" + this.api_key)
+		  .post(body)
+		  .addHeader("cache-control", "no-cache")
+		  .addHeader("postman-token", "b1a5997a-4a4e-0235-f7e5-fcbea501792b")
+		  .build();
+
+		Response response = client.newCall(request).execute();
+                return response.body().string();
+        }
 }
