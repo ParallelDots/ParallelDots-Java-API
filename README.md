@@ -25,7 +25,7 @@ ParallelDots pd = new ParallelDots(<api-key>);
 String sentiment = pd.sentiment("Come on, lets play together");
 System.out.println(sentiment);
 
-{ "sentiment": 0.851301}
+{"probabilities": {"positive": 0.00002,"neutral": 0.999954,"negative": 0.000026}}
 
 String similarity = pd.similarity("Sachin is the greatest batsman", "Tendulkar is the finest cricketer");
 System.out.println(similarity);
