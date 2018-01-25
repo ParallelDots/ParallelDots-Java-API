@@ -26,12 +26,14 @@ import okhttp3.RequestBody;
 public class ParallelDots{
 
 	private String api_key;
+        private String app_id;
 
-	public ParallelDots(String api_key){
+	public ParallelDots(String api_key, String app_id){
 		this.api_key = api_key;
+                this.app_id = app_id;
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {                
 		System.out.println("ParallelDots API");
 	}
 	public String sentiment(String text) throws Exception {
@@ -334,6 +336,36 @@ public class ParallelDots{
                 RequestBody body = RequestBody.create(mediatype, "{\"status\":\"done\"}");
 		Request request = new Request.Builder()
 		  .url("http://apis.paralleldots.com/v2/sentiment_social?text="+text+"&api_key="+this.api_key)
+		  .post(body)
+		  .addHeader("cache-control", "no-cache")
+		  .addHeader("postman-token", "b1a5997a-4a4e-0235-f7e5-fcbea501792b")
+		  .build();
+
+		Response response = client.newCall(request).execute();
+                return response.body().string();
+        }
+        
+        public String text_parser(String text) throws Exception {
+                OkHttpClient client = new OkHttpClient();
+                MediaType mediatype = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediatype, "{\"status\":\"done\"}");
+		Request request = new Request.Builder()
+		  .url("http://apis.paralleldots.com/v2/text_parser?text="+text+"&api_key="+this.api_key)
+		  .post(body)
+		  .addHeader("cache-control", "no-cache")
+		  .addHeader("postman-token", "b1a5997a-4a4e-0235-f7e5-fcbea501792b")
+		  .build();
+
+		Response response = client.newCall(request).execute();
+                return response.body().string();
+        }
+        
+        public String custom_classifier(String text) throws Exception {
+                OkHttpClient client = new OkHttpClient();
+                MediaType mediatype = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediatype, "{\"status\":\"done\"}");
+		Request request = new Request.Builder()
+		  .url("http://apis.paralleldots.com/v2/custom_classifier?text="+text+"&api_key="+this.api_key+"&id="+this.app_id)
 		  .post(body)
 		  .addHeader("cache-control", "no-cache")
 		  .addHeader("postman-token", "b1a5997a-4a4e-0235-f7e5-fcbea501792b")
