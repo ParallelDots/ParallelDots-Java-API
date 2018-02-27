@@ -17,6 +17,20 @@ Java wrapper for ParallelDots APIs
 
 > path: dependencies/okio-1.13.0.jar
 
+#### Languages Supported
+	- Portuguese ( pt )
+	- Chinese ( zh )
+	- Spanish ( es )
+	- German ( de )
+	- French ( fr )
+	- Dutch ( nl )
+	- Italian (it)
+	- Japanese ( ja )
+	- Indonesian ( id )
+	- Thai ( th )
+	- Danish ( da )
+	- Finish ( fi )
+
 #### Example
 ```sh
 import paralleldots.ParallelDots;
