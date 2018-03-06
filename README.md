@@ -17,11 +17,25 @@ Java wrapper for ParallelDots APIs
 
 > path: dependencies/okio-1.13.0.jar
 
+#### Languages Supported
+	- Portuguese ( pt )
+	- Chinese ( zh )
+	- Spanish ( es )
+	- German ( de )
+	- French ( fr )
+	- Dutch ( nl )
+	- Italian (it)
+	- Japanese ( ja )
+	- Indonesian ( id )
+	- Thai ( th )
+	- Danish ( da )
+	- Finish ( fi )
+
 #### Example
 ```sh
 import paralleldots.ParallelDots;
 
-ParallelDots pd = new ParallelDots(<api-key>);
+ParallelDots pd = new ParallelDots(<api-key>, <app-id>);
 String sentiment = pd.sentiment("Come on, lets play together");
 System.out.println(sentiment);
 
@@ -71,6 +85,43 @@ String sentiment_social = pd.sentiment_social("I left my camera at home");
 System.out.println(sentiment_social);
 
 {"probabilities": {"positive": 0.040374, "neutral": 0.491032, "negative": 0.468594}}
+
+String text_parser = pd.text_parser("Thrilling contest between Manchester City and Manchester United ends in a draw.");
+System.out.println(text_parser);
+
+{ "output": [ { "Dependency": "compound", "text": "Thrilling", "Tags": "noun" }, { "Dependency": "nominal subject", "text": "contest", "Tags": "noun" }, { "Dependency": "prepositional modifier", "text": "between", "Tags": "preposition or conjunction" }, { "Dependency": "compound", "text": "Manchester", "Tags": "noun" }, { "Dependency": "object of a preposition", "text": "City", "Tags": "noun" }, { "Dependency": "coordinating conjunction", "text": "and", "Tags": "conjuction" }, { "Dependency": "compound", "text": "Manchester", "Tags": "noun" }, { "Dependency": "conjunct", "text": "United", "Tags": "noun" }, { "Dependency": "root", "text": "ends", "Tags": "verb" }, { "Dependency": "prepositional modifier", "text": "in", "Tags": "preposition or conjunction" }, { "Dependency": "determiner", "text": "a", "Tags": "determiner" }, { "Dependency": "object of a preposition", "text": "draw", "Tags": "noun" } ]}
+
+String custom_classifier = pd.custom_classifier("Narendra Modi is the prime minister of India");
+System.out.println(custom_classifier);
+
+{
+  "taxonomy": [
+    {
+      "tag": "congress",
+      "confidence_score": 0.929256
+    },
+    {
+      "tag": "trump",
+      "confidence_score": 0.500636
+    },
+    {
+      "tag": "wall street",
+      "confidence_score": 0.3403
+    },
+    {
+      "tag": "fed",
+      "confidence_score": 0.330551
+    },
+    {
+      "tag": "republicans",
+      "confidence_score": 0.201478
+    },
+    {
+      "tag": "democrats",
+      "confidence_score": 0.125907
+    }
+  ]
+}
 
 String usage = pd.usage();
 System.out.println(usage);
