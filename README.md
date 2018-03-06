@@ -35,7 +35,7 @@ Java wrapper for ParallelDots APIs
 ```sh
 import paralleldots.ParallelDots;
 
-ParallelDots pd = new ParallelDots(<api-key>);
+ParallelDots pd = new ParallelDots(<api-key>, <app-id>);
 String sentiment = pd.sentiment("Come on, lets play together");
 System.out.println(sentiment);
 
