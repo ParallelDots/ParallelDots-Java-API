@@ -11,6 +11,7 @@ Java wrapper for ParallelDots APIs
 #### Dependencies
 * okhttp-3.9.0.jar
 * okio-1.13.0.jar
+* json-simple-1.1.jar
 
 #### Path to Dependencies
 > path: dependencies/okhttp-3.9.0.jar
