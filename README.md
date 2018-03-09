@@ -18,6 +18,8 @@ Java wrapper for ParallelDots APIs
 
 > path: dependencies/okio-1.13.0.jar
 
+> path: dependencies/json-simple-1.1.jar
+
 #### Languages Supported
 	- Portuguese ( pt )
 	- Chinese ( zh )
