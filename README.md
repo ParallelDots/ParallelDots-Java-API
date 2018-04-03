@@ -33,6 +33,7 @@ Java wrapper for ParallelDots APIs
 	- Thai ( th )
 	- Danish ( da )
 	- Finish ( fi )
+	- Arabic (ar)
 
 #### Example
 ```sh
