@@ -22,7 +22,7 @@ Java wrapper for ParallelDots APIs
 
 #### Languages Supported
 	- Portuguese ( pt )
-	- Chinese ( zh )
+	- Simplified Chinese ( zh )
 	- Spanish ( es )
 	- German ( de )
 	- French ( fr )
@@ -34,6 +34,7 @@ Java wrapper for ParallelDots APIs
 	- Danish ( da )
 	- Finish ( fi )
 	- Arabic (ar)
+	- Greek (el)
 
 #### Example
 ```sh
