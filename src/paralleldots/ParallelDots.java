@@ -297,7 +297,7 @@ public class ParallelDots{
                 return response.body().string();
             }catch(SocketTimeoutException e){
                 e.printStackTrace();
-                return "{ \"Error\": \"Request Time out\" }";
+                return "{ \"Error\": \"Request Timed Out\" }";
             }
             
         }else{
@@ -325,7 +325,7 @@ public class ParallelDots{
                 return response.body().string();
             }catch(SocketTimeoutException e){
                 e.printStackTrace();
-                return "{ \"Error\": \"Request Time out\" }";
+                return "{ \"Error\": \"Request Timed Out\" }";
             }            
         }else{
             return "{ \"Error\": \"API key does not exist\" }";
@@ -376,7 +376,7 @@ public class ParallelDots{
                 return response.body().string();
             }catch(SocketTimeoutException e){
                 e.printStackTrace();
-                return "{ \"Error\": \"Request Time out\" }";
+                return "{ \"Error\": \"Request Timed Out\" }";
             }            
         }else{
             return "{ \"Error\": \"API key does not exist\" }";
@@ -403,7 +403,7 @@ public class ParallelDots{
                 return response.body().string();
             }catch(SocketTimeoutException e){
                 e.printStackTrace();
-                return "{ \"Error\": \"Request Time out\" }";
+                return "{ \"Error\": \"Request Timed Out\" }";
             }
         }else{
             return "{ \"Error\": \"API key does not exist\" }";
