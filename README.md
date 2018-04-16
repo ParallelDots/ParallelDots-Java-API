@@ -29,7 +29,7 @@ Java wrapper for ParallelDots APIs
 	- Dutch ( nl )
 	- Italian (it)
 	- Japanese ( ja )
-	- Indonesian ( id )
+	- Russian ( ru )
 	- Thai ( th )
 	- Danish ( da )
 	- Finish ( fi )
