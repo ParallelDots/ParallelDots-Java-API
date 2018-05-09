@@ -198,6 +198,66 @@ public class ParallelDots{
         }	
     }
     
+    public String facial_emotion(String path) throws Exception{
+        if(this.api_key!=null){
+            try{
+                String url = host + "facial_emotion";
+                OkHttpClient client = new OkHttpClient.Builder()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(120, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .build();
+                File file = new File(path);
+                MimetypesFileTypeMap mimeTypesMap = new MimetypesFileTypeMap();
+                String mimeType = mimeTypesMap.getContentType(file);
+                MediaType mediaType = MediaType.parse("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
+                RequestBody formBody = new MultipartBody.Builder()
+                        .setType(MultipartBody.FORM)
+                        .addFormDataPart("file", file.getName(),RequestBody.create(MediaType.parse(mimeType), file)).build();
+                Request request = new Request.Builder()
+                    .url(url+"?api_key="+this.api_key)
+                    .post(formBody)
+                    .addHeader("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
+                    .addHeader("cache-control", "no-cache")
+                    .build();
+                Response response = client.newCall(request).execute();
+                return response.body().string();
+            }catch(SocketTimeoutException e){
+                e.printStackTrace();
+                return "{ \"Error\": \"Request Timed Out\" }";
+            }
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }
+    }
+
+    public String facial_emotion_url(String url_image) throws Exception{
+        if(this.api_key!=null){
+            try{
+                String url = host + "facial_emotion";
+                OkHttpClient client = new OkHttpClient.Builder()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(120, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .build();
+                MediaType mediatype = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediatype, "");
+                Request request = new Request.Builder()
+                  .url(url+"?api_key="+this.api_key+"&url="+url_image)
+                  .post(body)
+                  .addHeader("cache-control", "no-cache")
+                  .build();
+                Response response = client.newCall(request).execute();
+                return response.body().string();
+            }catch(SocketTimeoutException e){
+                e.printStackTrace();
+                return "{ \"Error\": \"Request Timed Out\" }";
+            }
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }
+    }
+
     public String intent(String text) throws Exception {
         if(this.api_key!=null){
             String url = host + "intent";
@@ -332,6 +392,66 @@ public class ParallelDots{
         }            
     }
     
+    public String object_recognizer(String path) throws Exception{
+        if(this.api_key!=null){
+            try{
+                String url = host + "object_recognizer";
+                OkHttpClient client = new OkHttpClient.Builder()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(120, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .build();
+                File file = new File(path);
+                MimetypesFileTypeMap mimeTypesMap = new MimetypesFileTypeMap();
+                String mimeType = mimeTypesMap.getContentType(file);
+                MediaType mediaType = MediaType.parse("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
+                RequestBody formBody = new MultipartBody.Builder()
+                        .setType(MultipartBody.FORM)
+                        .addFormDataPart("file", file.getName(),RequestBody.create(MediaType.parse(mimeType), file)).build();
+                Request request = new Request.Builder()
+                    .url(url+"?api_key="+this.api_key)
+                    .post(formBody)
+                    .addHeader("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
+                    .addHeader("cache-control", "no-cache")
+                    .build();
+                Response response = client.newCall(request).execute();
+                return response.body().string();
+            }catch(SocketTimeoutException e){
+                e.printStackTrace();
+                return "{ \"Error\": \"Request Timed Out\" }";
+            }
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }
+    }
+
+    public String object_recognizer_url(String url_image) throws Exception{
+        if(this.api_key!=null){
+            try{
+                String url = host + "object_recognizer";
+                OkHttpClient client = new OkHttpClient.Builder()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(120, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .build();
+                MediaType mediatype = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediatype, "");
+                Request request = new Request.Builder()
+                  .url(url+"?api_key="+this.api_key+"&url="+url_image)
+                  .post(body)
+                  .addHeader("cache-control", "no-cache")
+                  .build();
+                Response response = client.newCall(request).execute();
+                return response.body().string();
+            }catch(SocketTimeoutException e){
+                e.printStackTrace();
+                return "{ \"Error\": \"Request Timed Out\" }";
+            }
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }
+    }
+
     public String phrase_extractor(String text) throws Exception {
         if(this.api_key!=null){
             String url = host + "phrase_extractor";
