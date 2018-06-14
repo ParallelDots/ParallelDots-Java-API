@@ -32,6 +32,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 
 
@@ -143,6 +144,24 @@ public class ParallelDots{
             return "{ \"Error\": \"API key does not exist\" }";
         }	
     }
+    
+    public String abuse_batch(JSONArray text_list) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "abuse_batch";
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediatype = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(mediatype, "");
+            Request request = new Request.Builder()
+              .url(url+"?api_key="+this.api_key+"&data="+text_list)
+              .post(body)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }	
+    }
 
     public String custom_classifier(String text, JSONObject category) throws Exception {
         if(this.api_key!=null){
@@ -188,6 +207,42 @@ public class ParallelDots{
             RequestBody body = RequestBody.create(mediatype, "");
             Request request = new Request.Builder()
               .url(url+"?api_key="+this.api_key+"&text="+text+"&lang_code="+lang_code)
+              .post(body)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }	
+    }
+    
+    public String emotion_batch(JSONArray text_list) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "emotion_batch";
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediatype = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(mediatype, "");
+            Request request = new Request.Builder()
+              .url(url+"?api_key="+this.api_key+"&data="+text_list+"&lang_code=en")
+              .post(body)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }	
+    }
+    
+    public String emotion_batch(JSONArray text_list, String lang_code) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "emotion_batch";
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediatype = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(mediatype, "");
+            Request request = new Request.Builder()
+              .url(url+"?api_key="+this.api_key+"&data="+text_list+"&lang_code="+lang_code)
               .post(body)
               .addHeader("cache-control", "no-cache")
               .build();
@@ -275,6 +330,24 @@ public class ParallelDots{
             return "{ \"Error\": \"API key does not exist\" }";
         }            
     }
+    
+    public String intent_batch(JSONArray text_list) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "intent_batch";
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediatype = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(mediatype, "");
+            Request request = new Request.Builder()
+              .url(url+"?api_key="+this.api_key+"&data="+text_list)
+              .post(body)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }
+    }
 
     public String keywords(String text) throws Exception {
         if(this.api_key!=null){
@@ -294,6 +367,62 @@ public class ParallelDots{
         }		
     }
     
+    public String keywords_batch(JSONArray text_list) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "keywords_batch";
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediatype = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(mediatype, "");
+            Request request = new Request.Builder()
+              .url(url+"?api_key="+this.api_key+"&data="+text_list)
+              .post(body)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }		
+    }
+    
+    public String language_detection(String text) throws Exception{
+        if(this.api_key!=null){
+            String url = host + "language_detection";
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediatype = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(mediatype, "");
+            Request request = new Request.Builder()
+              .url(url+"?api_key="+this.api_key+"&text="+text)
+              .post(body)
+              .addHeader("cache-control", "no-cache")
+              .build();
+
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }
+    }
+    
+    public String language_detection_batch(JSONArray text_list) throws Exception{
+        if(this.api_key!=null){
+            String url = host + "language_detection_batch";
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediatype = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(mediatype, "");
+            Request request = new Request.Builder()
+              .url(url+"?api_key="+this.api_key+"&data="+text_list)
+              .post(body)
+              .addHeader("cache-control", "no-cache")
+              .build();
+
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }
+    }
+    
     public String multilang_keywords(String text, String lang_code) throws Exception{
         if(this.api_key!=null){
             String url = host + "multilang_keywords";
@@ -310,7 +439,7 @@ public class ParallelDots{
             return response.body().string();
         }else{
             return "{ \"Error\": \"API key does not exist\" }";
-        }            
+        }
     }
     
     public String ner(String text) throws Exception {
@@ -331,6 +460,24 @@ public class ParallelDots{
         }            
     }
 
+    public String ner_batch(JSONArray text_list) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "ner_batch";
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediatype = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(mediatype, "");
+            Request request = new Request.Builder()
+              .url(url+"?api_key="+this.api_key+"&data="+text_list)
+              .post(body)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }            
+    }
+    
     public String nsfw(String path) throws Exception{
         if(this.api_key!=null){
             try{
@@ -470,6 +617,24 @@ public class ParallelDots{
         }            
     }
     
+    public String phrase_extractor_batch(JSONArray text_list) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "phrase_extractor_batch";
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediatype = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(mediatype, "");
+            Request request = new Request.Builder()
+              .url(url+"?api_key="+this.api_key+"&data="+text_list)
+              .post(body)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }            
+    }
+    
     public String popularity(String path) throws Exception{
         if(this.api_key!=null){
             try{
@@ -566,6 +731,42 @@ public class ParallelDots{
         }            
     }
 
+    public String sentiment_batch(JSONArray text_list) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "sentiment_batch";
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediatype = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(mediatype, "");
+            Request request = new Request.Builder()
+              .url(url+"?api_key="+this.api_key+"&data=" + text_list + "&lang_code=en")
+              .post(body)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }            
+    }
+    
+    public String sentiment_batch(JSONArray text_list, String lang_code) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "sentiment_batch";
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediatype = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(mediatype, "");
+            Request request = new Request.Builder()
+              .url(url+"?api_key="+this.api_key+"&data=" + text_list + "&lang_code=" + lang_code)
+              .post(body)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }            
+    }
+    
     public String similarity(String text_1, String text_2) throws Exception {
         if(this.api_key!=null){
             String url = host + "similarity";
@@ -600,6 +801,24 @@ public class ParallelDots{
         }else{
             return "{ \"Error\": \"API key does not exist\" }";
         }	
+    }
+
+    public String taxonomy_batch(JSONArray text_list) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "taxonomy_batch";
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediatype = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(mediatype, "");
+            Request request = new Request.Builder()
+              .url(url+"?api_key="+this.api_key+"&data="+text_list)
+              .post(body)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }
     }    
 
     public String text_parser(String text) throws Exception {
