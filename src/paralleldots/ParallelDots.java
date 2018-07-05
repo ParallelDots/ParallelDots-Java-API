@@ -152,7 +152,7 @@ public class ParallelDots{
             MediaType mediatype = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediatype, "");
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&data="+text_list)
+              .url(url+"?api_key="+this.api_key+"&text="+text_list)
               .post(body)
               .addHeader("cache-control", "no-cache")
               .build();
@@ -224,7 +224,7 @@ public class ParallelDots{
             MediaType mediatype = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediatype, "");
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&data="+text_list+"&lang_code=en")
+              .url(url+"?api_key="+this.api_key+"&text="+text_list+"&lang_code=en")
               .post(body)
               .addHeader("cache-control", "no-cache")
               .build();
@@ -242,7 +242,7 @@ public class ParallelDots{
             MediaType mediatype = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediatype, "");
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&data="+text_list+"&lang_code="+lang_code)
+              .url(url+"?api_key="+this.api_key+"&text="+text_list+"&lang_code="+lang_code)
               .post(body)
               .addHeader("cache-control", "no-cache")
               .build();
@@ -338,7 +338,7 @@ public class ParallelDots{
             MediaType mediatype = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediatype, "");
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&data="+text_list)
+              .url(url+"?api_key="+this.api_key+"&text="+text_list)
               .post(body)
               .addHeader("cache-control", "no-cache")
               .build();
@@ -374,7 +374,7 @@ public class ParallelDots{
             MediaType mediatype = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediatype, "");
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&data="+text_list)
+              .url(url+"?api_key="+this.api_key+"&text="+text_list)
               .post(body)
               .addHeader("cache-control", "no-cache")
               .build();
@@ -411,7 +411,7 @@ public class ParallelDots{
             MediaType mediatype = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediatype, "");
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&data="+text_list)
+              .url(url+"?api_key="+this.api_key+"&text="+text_list)
               .post(body)
               .addHeader("cache-control", "no-cache")
               .build();
@@ -467,7 +467,7 @@ public class ParallelDots{
             MediaType mediatype = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediatype, "");
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&data="+text_list)
+              .url(url+"?api_key="+this.api_key+"&text="+text_list)
               .post(body)
               .addHeader("cache-control", "no-cache")
               .build();
@@ -624,7 +624,7 @@ public class ParallelDots{
             MediaType mediatype = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediatype, "");
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&data="+text_list)
+              .url(url+"?api_key="+this.api_key+"&text="+text_list)
               .post(body)
               .addHeader("cache-control", "no-cache")
               .build();
@@ -738,7 +738,7 @@ public class ParallelDots{
             MediaType mediatype = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediatype, "");
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&data=" + text_list + "&lang_code=en")
+              .url(url+"?api_key="+this.api_key+"&text=" + text_list + "&lang_code=en")
               .post(body)
               .addHeader("cache-control", "no-cache")
               .build();
@@ -756,7 +756,7 @@ public class ParallelDots{
             MediaType mediatype = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediatype, "");
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&data=" + text_list + "&lang_code=" + lang_code)
+              .url(url+"?api_key="+this.api_key+"&text=" + text_list + "&lang_code=" + lang_code)
               .post(body)
               .addHeader("cache-control", "no-cache")
               .build();
@@ -810,7 +810,7 @@ public class ParallelDots{
             MediaType mediatype = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediatype, "");
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&data="+text_list)
+              .url(url+"?api_key="+this.api_key+"&text="+text_list)
               .post(body)
               .addHeader("cache-control", "no-cache")
               .build();
