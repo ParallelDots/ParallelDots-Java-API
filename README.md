@@ -3,22 +3,15 @@ Java wrapper for ParallelDots APIs
 
 # Installation
 #### Use the JAR
-* ParallelDots.jar
+* paralleldots-1.0-SNAPSHOT.jar
 
 #### Path to JAR
-> path: dist/ParallelDots.jar
+> path: target/paralleldots-1.0-SNAPSHOT.jar
 
 #### Dependencies
 * okhttp-3.10.0.jar
 * okio-1.14.0.jar
 * json-simple-1.1.jar
-
-#### Path to Dependencies
-> path: dependencies/okhttp-3.10.0.jar
-
-> path: dependencies/okio-1.14.0.jar
-
-> path: dependencies/json-simple-1.1.jar
 
 #### Languages Supported
 	- Portuguese ( pt )
@@ -38,7 +31,7 @@ Java wrapper for ParallelDots APIs
 
 #### Example
 ```sh
-import paralleldots.ParallelDots;
+import com.paralleldots.paralleldots.App;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -51,7 +44,7 @@ String lang_text = "C'est un environnement très hostile, si vous choisissez de 
 JSONArray text_list = (JSONArray)parser.parse("[ \"drugs are fun\", \"don\'t do drugs, stay in school\", \"lol you a fag son\", \"I have a throat infection\" ]");
 JSONArray text_list_multilang = (JSONArray)parser.parse("[\"les drogues sont amusantes\", \"ne pas faire de la drogue reste à l'école\", \"lol vous un fils de fag\", \"J\'ai une infection de la gorge\"]");
 
-ParallelDots pd = new ParallelDots(<api-key>);
+App pd = new App(<api-key>);
 System.out.println("Abuse");
 String abuse = pd.abuse("you f**king a$$hole");
 System.out.println(abuse);
