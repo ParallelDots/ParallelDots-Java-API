@@ -3,10 +3,10 @@ Java wrapper for ParallelDots APIs
 
 # Installation
 #### Use the JAR
-* paralleldots-1.0-SNAPSHOT.jar
+* paralleldots-1.0.0.jar
 
 #### Path to JAR
-> path: target/paralleldots-1.0-SNAPSHOT.jar
+> path: target/paralleldots-1.0.0.jar
 
 #### Dependencies
 * okhttp-3.10.0.jar
