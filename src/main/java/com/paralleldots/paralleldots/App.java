@@ -31,7 +31,6 @@ import okhttp3.ResponseBody;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
-
 /**
  *
  * @author vaibh91
@@ -132,11 +131,14 @@ public class App{
         if(this.api_key!=null){
             String url = host + "abuse";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text)
+            .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -150,11 +152,14 @@ public class App{
         if(this.api_key!=null){
             String url = host + "abuse_batch";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text_list.toString())
+            .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text_list)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -168,11 +173,15 @@ public class App{
         if(this.api_key!=null){
             String url = host + "custom_classifier";
             OkHttpClient client = new OkHttpClient();
-            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-            RequestBody body = RequestBody.create(JSON, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("category", category.toJSONString())
+            .addFormDataPart("text", text)
+            .build();
             Request request = new Request.Builder()
-                .url(url+"?api_key="+this.api_key+"&text="+text+"&category="+category)
-                .post(body)
+                .url(url)
+                .post(requestBody)
                 .build();
             Response response = client.newCall(request).execute();
             ResponseBody respBody = response.body();
@@ -186,11 +195,15 @@ public class App{
         if(this.api_key!=null){
             String url = host + "emotion";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text)
+            .addFormDataPart("lang_code", "en")
+            .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text+"&lang_code=en")
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -204,11 +217,15 @@ public class App{
         if(this.api_key!=null){
             String url = host + "emotion";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text)
+            .addFormDataPart("lang_code", lang_code)
+            .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text+"&lang_code="+lang_code)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -222,11 +239,15 @@ public class App{
         if(this.api_key!=null){
             String url = host + "emotion_batch";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text_list.toString())
+            .addFormDataPart("lang_code", "en")
+            .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text_list+"&lang_code=en")
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -240,11 +261,15 @@ public class App{
         if(this.api_key!=null){
             String url = host + "emotion_batch";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text_list.toString())
+            .addFormDataPart("lang_code", lang_code)
+            .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text_list+"&lang_code="+lang_code)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -269,9 +294,11 @@ public class App{
                 MediaType mediaType = MediaType.parse("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
                 RequestBody formBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
-                        .addFormDataPart("file", file.getName(),RequestBody.create(MediaType.parse(mimeType), file)).build();
+                        .addFormDataPart("file", file.getName(),RequestBody.create(MediaType.parse(mimeType), file))
+                        .addFormDataPart("api_key", this.api_key)
+                        .build();
                 Request request = new Request.Builder()
-                    .url(url+"?api_key="+this.api_key)
+                    .url(url)
                     .post(formBody)
                     .addHeader("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
                     .addHeader("cache-control", "no-cache")
@@ -296,11 +323,14 @@ public class App{
                         .writeTimeout(120, TimeUnit.SECONDS)
                         .readTimeout(60, TimeUnit.SECONDS)
                         .build();
-                MediaType mediatype = MediaType.parse("application/json");
-                RequestBody body = RequestBody.create(mediatype, "");
+                RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", this.api_key)
+                .addFormDataPart("url", url_image)
+                .build();
                 Request request = new Request.Builder()
                   .url(url+"?api_key="+this.api_key+"&url="+url_image)
-                  .post(body)
+                  .post(requestBody)
                   .addHeader("cache-control", "no-cache")
                   .build();
                 Response response = client.newCall(request).execute();
@@ -318,11 +348,14 @@ public class App{
         if(this.api_key!=null){
             String url = host + "intent";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text)
+            .build();
             Request request = new Request.Builder()
               .url(url+"?api_key="+this.api_key+"&text="+text)
-              .post(body)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -336,11 +369,14 @@ public class App{
         if(this.api_key!=null){
             String url = host + "intent_batch";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text_list.toString())
+            .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text_list)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -354,11 +390,14 @@ public class App{
         if(this.api_key!=null){
             String url = host + "keywords";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text)
+            .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -372,11 +411,14 @@ public class App{
         if(this.api_key!=null){
             String url = host + "keywords_batch";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text_list.toString())
+            .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text_list)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -390,11 +432,14 @@ public class App{
         if(this.api_key!=null){
             String url = host + "language_detection";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text)
+            .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
 
@@ -409,11 +454,14 @@ public class App{
         if(this.api_key!=null){
             String url = host + "language_detection_batch";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text_list.toString())
+            .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text_list)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
 
@@ -428,11 +476,15 @@ public class App{
         if(this.api_key!=null){
             String url = host + "multilang_keywords";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text)
+            .addFormDataPart("lang_code", lang_code)
+            .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text+"&lang_code="+lang_code)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
 
@@ -447,11 +499,14 @@ public class App{
         if(this.api_key!=null){
             String url = host + "ner";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text)
+            .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -465,11 +520,14 @@ public class App{
         if(this.api_key!=null){
             String url = host + "ner_batch";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text_list.toString())
+            .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text_list)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -494,9 +552,11 @@ public class App{
                 MediaType mediaType = MediaType.parse("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
                 RequestBody formBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
-                        .addFormDataPart("file", file.getName(),RequestBody.create(MediaType.parse(mimeType), file)).build();
+                        .addFormDataPart("file", file.getName(),RequestBody.create(MediaType.parse(mimeType), file))
+                        .addFormDataPart("api_key", this.api_key)
+                        .build();
                 Request request = new Request.Builder()
-                    .url(url+"?api_key="+this.api_key)
+                    .url(url)
                     .post(formBody)
                     .addHeader("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
                     .addHeader("cache-control", "no-cache")
@@ -522,11 +582,14 @@ public class App{
                         .writeTimeout(120, TimeUnit.SECONDS)
                         .readTimeout(60, TimeUnit.SECONDS)
                         .build();
-                MediaType mediatype = MediaType.parse("application/json");
-                RequestBody body = RequestBody.create(mediatype, "");
+                RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", this.api_key)
+                .addFormDataPart("url", url_image)
+                .build();
                 Request request = new Request.Builder()
-                  .url(url+"?api_key="+this.api_key+"&url="+url_image)
-                  .post(body)
+                  .url(url)
+                  .post(requestBody)
                   .addHeader("cache-control", "no-cache")
                   .build();
                 Response response = client.newCall(request).execute();
@@ -555,9 +618,11 @@ public class App{
                 MediaType mediaType = MediaType.parse("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
                 RequestBody formBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
-                        .addFormDataPart("file", file.getName(),RequestBody.create(MediaType.parse(mimeType), file)).build();
+                        .addFormDataPart("file", file.getName(),RequestBody.create(MediaType.parse(mimeType), file))
+                        .addFormDataPart("api_key", this.api_key)
+                        .build();
                 Request request = new Request.Builder()
-                    .url(url+"?api_key="+this.api_key)
+                    .url(url)
                     .post(formBody)
                     .addHeader("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
                     .addHeader("cache-control", "no-cache")
@@ -582,11 +647,14 @@ public class App{
                         .writeTimeout(120, TimeUnit.SECONDS)
                         .readTimeout(60, TimeUnit.SECONDS)
                         .build();
-                MediaType mediatype = MediaType.parse("application/json");
-                RequestBody body = RequestBody.create(mediatype, "");
+                RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", this.api_key)
+                .addFormDataPart("url", url_image)
+                .build();
                 Request request = new Request.Builder()
-                  .url(url+"?api_key="+this.api_key+"&url="+url_image)
-                  .post(body)
+                  .url(url)
+                  .post(requestBody)
                   .addHeader("cache-control", "no-cache")
                   .build();
                 Response response = client.newCall(request).execute();
@@ -604,11 +672,14 @@ public class App{
         if(this.api_key!=null){
             String url = host + "phrase_extractor";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", this.api_key)
+                .addFormDataPart("text", text)
+                .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -622,11 +693,14 @@ public class App{
         if(this.api_key!=null){
             String url = host + "phrase_extractor_batch";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", this.api_key)
+                .addFormDataPart("text", text_list.toString())
+                .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text_list)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -651,9 +725,11 @@ public class App{
                 MediaType mediaType = MediaType.parse("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
                 RequestBody formBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
-                        .addFormDataPart("file", file.getName(),RequestBody.create(MediaType.parse(mimeType), file)).build();
+                        .addFormDataPart("file", file.getName(),RequestBody.create(MediaType.parse(mimeType), file))
+                        .addFormDataPart("api_key", this.api_key)
+                        .build();
                 Request request = new Request.Builder()
-                    .url(url+"?api_key="+this.api_key)
+                    .url(url)
                     .post(formBody)
                     .addHeader("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
                     .addHeader("cache-control", "no-cache")
@@ -678,11 +754,14 @@ public class App{
                         .writeTimeout(120, TimeUnit.SECONDS)
                         .readTimeout(60, TimeUnit.SECONDS)
                         .build();
-                MediaType mediatype = MediaType.parse("application/json");
-                RequestBody body = RequestBody.create(mediatype, "");
+                RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", this.api_key)
+                .addFormDataPart("url", url_image)
+                .build();
                 Request request = new Request.Builder()
-                  .url(url+"?api_key="+this.api_key+"&url="+url_image)
-                  .post(body)
+                  .url(url)
+                  .post(requestBody)
                   .addHeader("cache-control", "no-cache")
                   .build();
                 Response response = client.newCall(request).execute();
@@ -700,11 +779,15 @@ public class App{
         if(this.api_key!=null){
             String url = host + "sentiment";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", this.api_key)
+                .addFormDataPart("text", text)
+                .addFormDataPart("lang_code", "en")
+                .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text=" + text + "&lang_code=en")
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -718,11 +801,15 @@ public class App{
         if(this.api_key!=null){
             String url = host + "sentiment";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", this.api_key)
+                .addFormDataPart("text", text)
+                .addFormDataPart("lang_code", lang_code)
+                .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text=" + text + "&lang_code=" + lang_code)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -736,11 +823,15 @@ public class App{
         if(this.api_key!=null){
             String url = host + "sentiment_batch";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", this.api_key)
+                .addFormDataPart("text", text_list.toString())
+                .addFormDataPart("lang_code", "en")
+                .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text=" + text_list + "&lang_code=en")
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -754,11 +845,15 @@ public class App{
         if(this.api_key!=null){
             String url = host + "sentiment_batch";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", this.api_key)
+                .addFormDataPart("text", text_list.toString())
+                .addFormDataPart("lang_code", lang_code)
+                .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text=" + text_list + "&lang_code=" + lang_code)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -772,11 +867,15 @@ public class App{
         if(this.api_key!=null){
             String url = host + "similarity";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", this.api_key)
+                .addFormDataPart("text_1", text_1)
+                .addFormDataPart("text_2", text_2)
+                .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text_1=" + text_1 + "&text_2=" + text_2)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -790,11 +889,14 @@ public class App{
         if(this.api_key!=null){
             String url = host + "taxonomy";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", this.api_key)
+                .addFormDataPart("text", text)
+                .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -808,11 +910,14 @@ public class App{
         if(this.api_key!=null){
             String url = host + "taxonomy_batch";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", this.api_key)
+                .addFormDataPart("text", text_list.toString())
+                .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text_list)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -826,11 +931,14 @@ public class App{
         if(this.api_key!=null){
             String url = host + "text_parser";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", this.api_key)
+                .addFormDataPart("text", text)
+                .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key="+this.api_key+"&text="+text)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
@@ -844,11 +952,13 @@ public class App{
         if(this.api_key!=null){
             String url = "http://apis.paralleldots.com/usage";
             OkHttpClient client = new OkHttpClient();
-            MediaType mediatype = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediatype, "");
+            RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("api_key", this.api_key)
+                .build();
             Request request = new Request.Builder()
-              .url(url+"?api_key=" + this.api_key)
-              .post(body)
+              .url(url)
+              .post(requestBody)
               .addHeader("cache-control", "no-cache")
               .build();
             Response response = client.newCall(request).execute();
