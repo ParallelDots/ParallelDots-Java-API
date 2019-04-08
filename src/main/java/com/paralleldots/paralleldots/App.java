@@ -38,7 +38,7 @@ import org.json.simple.parser.JSONParser;
 
 public class App{
     private String api_key;
-    private String host="https://apis.paralleldots.com/v3/";
+    private String host="https://apis.paralleldots.com/v4/";
 
     public App(String api_key){
         this.api_key = api_key;
@@ -123,7 +123,9 @@ public class App{
         }
     }
     
-    public static void main(String[] args) throws Exception {                
+    
+    
+    public static void main(String[] args) throws Exception { 
         System.out.println("ParallelDots API");
     }
     
@@ -156,6 +158,186 @@ public class App{
             .setType(MultipartBody.FORM)
             .addFormDataPart("api_key", this.api_key)
             .addFormDataPart("text", text_list.toString())
+            .build();
+            Request request = new Request.Builder()
+              .url(url)
+              .post(requestBody)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }	
+    }
+
+    public String sarcasm(String text) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "sarcasm";
+            OkHttpClient client = new OkHttpClient();
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text)
+            .addFormDataPart("lang_code", "en")
+            .build();
+            Request request = new Request.Builder()
+              .url(url)
+              .post(requestBody)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }	
+    }
+    
+    public String sarcasm(String text, String lang_code) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "sarcasm";
+            OkHttpClient client = new OkHttpClient();
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text)
+            .addFormDataPart("lang_code", lang_code)
+            .build();
+            Request request = new Request.Builder()
+              .url(url)
+              .post(requestBody)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }	
+    }
+    
+    public String sarcasm_batch(JSONArray text_list) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "sarcasm_batch";
+            OkHttpClient client = new OkHttpClient();
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text_list.toString())
+            .addFormDataPart("lang_code", "en")
+            .build();
+            Request request = new Request.Builder()
+              .url(url)
+              .post(requestBody)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }	
+    }
+    
+    public String sarcasm_batch(JSONArray text_list, String lang_code) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "sarcasm_batch";
+            OkHttpClient client = new OkHttpClient();
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text_list.toString())
+            .addFormDataPart("lang_code", lang_code)
+            .build();
+            Request request = new Request.Builder()
+              .url(url)
+              .post(requestBody)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }	
+    }
+    
+    public String target_sentiment(String text,String entity) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "target/sentiment";
+            OkHttpClient client = new OkHttpClient();
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text)
+            .addFormDataPart("lang_code", "en")
+            .addFormDataPart("entity", entity)
+            .build();
+            Request request = new Request.Builder()
+              .url(url)
+              .post(requestBody)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }	
+    }
+    
+    public String target_sentiment(String text,String entity, String lang_code) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "target/sentiment";
+            OkHttpClient client = new OkHttpClient();
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text)
+            .addFormDataPart("lang_code", lang_code)
+            .addFormDataPart("entity", entity)
+            .build();
+            Request request = new Request.Builder()
+              .url(url)
+              .post(requestBody)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }	
+    }
+    
+    public String target_sentiment_batch(JSONArray text_list,String entity) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "target/sentiment_batch";
+            OkHttpClient client = new OkHttpClient();
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text_list.toString())
+            .addFormDataPart("lang_code", "en")
+            .addFormDataPart("entity", entity)
+            .build();
+            Request request = new Request.Builder()
+              .url(url)
+              .post(requestBody)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }	
+    }
+    
+    public String target_sentiment_batch(JSONArray text_list,String entity, String lang_code) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "target/sentiment_batch";
+            OkHttpClient client = new OkHttpClient();
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text_list.toString())
+            .addFormDataPart("lang_code", lang_code)
+            .addFormDataPart("entity", entity)
             .build();
             Request request = new Request.Builder()
               .url(url)
