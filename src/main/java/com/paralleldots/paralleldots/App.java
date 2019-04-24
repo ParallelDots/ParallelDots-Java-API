@@ -697,6 +697,28 @@ public class App{
             return "{ \"Error\": \"API key does not exist\" }";
         }            
     }
+    
+    public String ner(String text ,String lang_code) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "ner";
+            OkHttpClient client = new OkHttpClient();
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text)
+            .addFormDataPart("lang_code", lang_code)
+            .build();
+            Request request = new Request.Builder()
+              .url(url)
+              .post(requestBody)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }            
+    }
 
     public String ner_batch(JSONArray text_list) throws Exception {
         if(this.api_key!=null){
@@ -706,6 +728,28 @@ public class App{
             .setType(MultipartBody.FORM)
             .addFormDataPart("api_key", this.api_key)
             .addFormDataPart("text", text_list.toString())
+            .build();
+            Request request = new Request.Builder()
+              .url(url)
+              .post(requestBody)
+              .addHeader("cache-control", "no-cache")
+              .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }else{
+            return "{ \"Error\": \"API key does not exist\" }";
+        }            
+    }
+    
+        public String ner_batch(JSONArray text_list,String lang_code) throws Exception {
+        if(this.api_key!=null){
+            String url = host + "ner_batch";
+            OkHttpClient client = new OkHttpClient();
+            RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("api_key", this.api_key)
+            .addFormDataPart("text", text_list.toString())
+            .addFormDataPart("lang_code", lang_code)
             .build();
             Request request = new Request.Builder()
               .url(url)
