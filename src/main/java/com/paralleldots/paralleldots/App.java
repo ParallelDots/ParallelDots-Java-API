@@ -259,16 +259,16 @@ public class App{
         }	
     }
     
-    public String target_sentiment(String text,String entity) throws Exception {
+    public String target_sentiment(String text,String aspect) throws Exception {
         if(this.api_key!=null){
-            String url = host + "target/sentiment";
+            String url = host + "target_sentiment";
             OkHttpClient client = new OkHttpClient();
             RequestBody requestBody = new MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("api_key", this.api_key)
             .addFormDataPart("text", text)
             .addFormDataPart("lang_code", "en")
-            .addFormDataPart("entity", entity)
+            .addFormDataPart("aspect", aspect)
             .build();
             Request request = new Request.Builder()
               .url(url)
@@ -282,16 +282,16 @@ public class App{
         }	
     }
     
-    public String target_sentiment(String text,String entity, String lang_code) throws Exception {
+    public String target_sentiment(String text,String aspect, String lang_code) throws Exception {
         if(this.api_key!=null){
-            String url = host + "target/sentiment";
+            String url = host + "target_sentiment";
             OkHttpClient client = new OkHttpClient();
             RequestBody requestBody = new MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("api_key", this.api_key)
             .addFormDataPart("text", text)
             .addFormDataPart("lang_code", lang_code)
-            .addFormDataPart("entity", entity)
+            .addFormDataPart("aspect", aspect)
             .build();
             Request request = new Request.Builder()
               .url(url)
@@ -305,16 +305,16 @@ public class App{
         }	
     }
     
-    public String target_sentiment_batch(JSONArray text_list,String entity) throws Exception {
+    public String target_sentiment_batch(JSONArray text_list,String aspect) throws Exception {
         if(this.api_key!=null){
-            String url = host + "target/sentiment_batch";
+            String url = host + "target_sentiment_batch";
             OkHttpClient client = new OkHttpClient();
             RequestBody requestBody = new MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("api_key", this.api_key)
             .addFormDataPart("text", text_list.toString())
             .addFormDataPart("lang_code", "en")
-            .addFormDataPart("entity", entity)
+            .addFormDataPart("aspect", aspect)
             .build();
             Request request = new Request.Builder()
               .url(url)
@@ -328,16 +328,16 @@ public class App{
         }	
     }
     
-    public String target_sentiment_batch(JSONArray text_list,String entity, String lang_code) throws Exception {
+    public String target_sentiment_batch(JSONArray text_list,String aspect, String lang_code) throws Exception {
         if(this.api_key!=null){
-            String url = host + "target/sentiment_batch";
+            String url = host + "target_sentiment_batch";
             OkHttpClient client = new OkHttpClient();
             RequestBody requestBody = new MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("api_key", this.api_key)
             .addFormDataPart("text", text_list.toString())
             .addFormDataPart("lang_code", lang_code)
-            .addFormDataPart("entity", entity)
+            .addFormDataPart("aspect", aspect)
             .build();
             Request request = new Request.Builder()
               .url(url)
@@ -351,14 +351,14 @@ public class App{
         }	
     }
 
-    public String custom_classifier(String text, JSONObject category) throws Exception {
+    public String custom_classifier(String text, JSONArray category) throws Exception {
         if(this.api_key!=null){
             String url = host + "custom_classifier";
             OkHttpClient client = new OkHttpClient();
             RequestBody requestBody = new MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("api_key", this.api_key)
-            .addFormDataPart("category", category.toJSONString())
+            .addFormDataPart("category", category.toString())
             .addFormDataPart("text", text)
             .build();
             Request request = new Request.Builder()
