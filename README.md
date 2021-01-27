@@ -37,7 +37,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 
 JSONParser parser = new JSONParser();
-JSONObject category = (JSONObject)parser.parse("{\"world politics\": [\"diplomacy\", \"UN\", \"war\"], \"india\": [\"congress\", \"india\", \"bjp\"], \"finance\": [\"markets\", \"economy\", \"shares\"]}".trim());
+JSONObject category =  (JSONArray)parser.parse("[ \"world politics\", \"finance\" ]");
 String path_to_image="<path_to_image>";
 String url_to_image="<url_to_image>";
 String lang_text = "C'est un environnement très hostile, si vous choisissez de débattre ici, vous serez vicieusement attaqué par l'opposition.";
